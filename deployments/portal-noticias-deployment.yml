@@ -17,6 +17,25 @@ spec:
           envFrom:
             - configMapRef:
                 name: portal-configmap
+          livenessProbe:
+            # rota para testar o container
+            httpGet:
+              path: /
+              port: 80
+            # periodo em segundos para testar
+            periodSeconds: 10
+            # max de falhas toleradas antes de reiniciar o container
+            failureThreshold: 3
+            # trava inicial antes do começar a testar o container
+            initialDelaySeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            # se ele não conseguir executar falar em X na proxima ele envia as requisições para o container
+            failureThreshold: 5
+            initialDelaySeconds: 3 
   replicas: 3
   selector:
     matchLabels:
