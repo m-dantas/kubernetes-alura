@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: imagens-pvc
+spec:
+  # define o tipo de acesso
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      # define o tamanho do disco
+      storage: 1Gi
