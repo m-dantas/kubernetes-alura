@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+    name: slow
+provisioner: kubernetes.io/gce-pd # especifico do google cloud -> verificar com seu provider
+parameters:
+    type: pd-standard # Tipos de discos: standard -> hd | ssd -> ssd
+    fstype: ext4

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-sc
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: segundo-pv
+  volumes:
+    - name: segundo-pv
+      # definindo qual é o volume que iremos persistir
+      persistentVolumeClaim:
+      # definido pelo arquivo pvc.yml
+        claimName: pvc-2
